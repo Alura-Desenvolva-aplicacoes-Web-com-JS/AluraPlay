@@ -18,6 +18,10 @@ async function createVideo(title, description, url, img){
             img: img
         })
     })
+    
+    if(!connectAPI.ok){
+        throw new Error("Não foi possível enviar o vídeo")
+    }
 
     const cvtConnection = await connection.json()
     

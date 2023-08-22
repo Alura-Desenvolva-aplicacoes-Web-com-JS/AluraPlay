@@ -10,9 +10,13 @@ async function createVideo(e){
     const title = document.querySelector("[data-titulo]").value
     const description = Math.floor(Math.random() * 10).toString()
 
-    await connectAPI.createVideo(title, description, url, img)
-
-    window.location.href = "../pages/envio-concluido.html"
+    try{
+        await connectAPI.createVideo(title, description, url, img)
+    
+        window.location.href = "../pages/envio-concluido.html"
+    } catch (e) {
+        alert(e)
+    }
 }
 
 form.addEventListener('submit', e => createVideo(e))
