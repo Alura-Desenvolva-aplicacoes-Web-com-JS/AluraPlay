@@ -5,17 +5,17 @@ async function videoLists(){
     return cvtConnection
 }
 
-async function createVideo(titulo, descricao, url, imagem){
+async function createVideo(title, description, url, img){
     const connection = await fetch('http://localhost:3000/videos', {
         method: 'POST',
         headers: {
             'Content-type': 'application/json'
         },
         body: JSON.stringify({
-            titulo: titulo,
-            descricao: `${descricao} mil visualizações`,
+            title: title,
+            description: `${description} mil visualizações`,
             url: url,
-            imagem: imagem
+            img: img
         })
     })
 
@@ -24,6 +24,13 @@ async function createVideo(titulo, descricao, url, imagem){
     return cvtConnection
 }
 
+async function searchVideo(searchTerm){
+    const connectAPI = await fetch(`http://localhost:3000/videos?q=${searchTerm}`)
+    const cvtConnection = await connectAPI.json()
+
+    return cvtConnection
+}
+
 export const connectAPI = {
-    videoLists, createVideo
+    videoLists, createVideo, searchVideo
 }

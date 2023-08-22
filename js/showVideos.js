@@ -2,17 +2,17 @@ import { connectAPI } from "./connectAPI.js"
 
 const list = document.querySelector("[data-lista]")
 
-function buildCard(titulo, descricao, url, imagem){
+export default function buildCard(title, description, url, img){
     const video = document.createElement('li')
     video.className = "videos__item"
     video.innerHTML = `<iframe width="100%" height="72%" src="${url}"
-    title="${titulo}" frameborder="0"
+    title="${title}" frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
     allowfullscreen></iframe>
 <div class="descricao-video">
-    <img src="${imagem}" alt="logo canal alura">
-    <h3>${titulo}</h3>
-    <p>${descricao}</p>
+    <img src="${img}" alt="logo canal alura">
+    <h3>${title}</h3>
+    <p>${description}</p>
 </div>`
 
     return video
@@ -20,7 +20,7 @@ function buildCard(titulo, descricao, url, imagem){
 
 async function listVideo(){
     const listAPI = await connectAPI.videoLists()
-    listAPI.forEach(elemento => list.appendChild(buildCard(elemento.titulo, elemento.descricao, elemento.url, elemento.imagem)))
+    listAPI.forEach(element => list.appendChild(buildCard(element.titulo, element.descricao, element.url, element.imagem)))
 
 }
 

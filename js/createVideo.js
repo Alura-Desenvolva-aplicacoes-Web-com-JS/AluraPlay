@@ -2,8 +2,8 @@ import { connectAPI } from "./connectAPI.js"
 
 const form = document.querySelector("[data-formulario]")
 
-async function createVideo(evento){
-    evento.preventDefault()
+async function createVideo(e){
+    e.preventDefault()
 
     const img = document.querySelector("[data-imagem]").value
     const url = document.querySelector("[data-url]").value
@@ -15,4 +15,4 @@ async function createVideo(evento){
     window.location.href = "../pages/envio-concluido.html"
 }
 
-form.addEventListener('submit', evento => createVideo(evento))
+form.addEventListener('submit', e => createVideo(e))
